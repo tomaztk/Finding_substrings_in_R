@@ -1,5 +1,24 @@
+############################################################
+############################################################
+##
+## Finding most frequent substrings on the slovenian 
+## from dictionary and finding the number of different words
+## with graphs and visuals
+##
+## Tomaz Kastrun
+## blog: tomaztsql.wordpress.com
+## 11.11.2019
+## Version 0.0.1
+##
+
+############################################################
+############################################################
+
+
+
+
 library(plyr)
-library(microbenchmark)
+#library(microbenchmark)
 library(dplyr)
 
 # Besede s sodim številom èrk
@@ -89,12 +108,23 @@ res_len5 %>%
 
 # Removing special chars. e.g.: , . ( ) / \ etc.
 ## ToDo: ... 
-# ending here...
+#cleaning
 
-head(res_len2A[order(-res_len2A$Freq),],15)
-head(res_len3A[order(-res_len3A$Freq),],15)
-head(res_len4A[order(-res_len4A$Freq),],15)
-s <- head(res_len5A[order(-res_len5A$Freq),],15)
+#Data <- head(res_len2A[order(res_len2A$Freq),],15)
+
+
+res_len2A_Clean <- res_len2A %>% filter(!(grepl("[[:punct:]]", .$vektor_len2)))           
+res_len3A_Clean <- res_len3A %>% filter(!(grepl("[[:punct:]]", .$vektor_len3)))    
+res_len4A_Clean <- res_len4A %>% filter(!(grepl("[[:punct:]]", .$vektor_len4)))    
+res_len5A_Clean <- res_len5A %>% filter(!(grepl("[[:punct:]]", .$vektor_len5)))    
+
+# ending here with cleaning
+
+head(res_len2A_Clean[order(-res_len2A_Clean$Freq),],15)
+head(res_len3A_Clean[order(-res_len3A_Clean$Freq),],15)
+head(res_len4A_Clean[order(-res_len4A_Clean$Freq),],15)
+s <- head(res_len5A_Clean[order(-res_len5A_Clean$Freq),],15)
+
 
 
 
